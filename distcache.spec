@@ -7,6 +7,7 @@ Release:	6
 License:	LGPL
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/distcache/%{name}-%{version}.tar.bz2
+# Source0-md5:	bad485801024f711ad72e83ba1adcd7d
 Source1:	dc_server.init
 Source2:	dc_client.init
 Patch0:		%{name}-1.4.5-setuid.patch

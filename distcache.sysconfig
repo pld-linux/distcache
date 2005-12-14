@@ -1,0 +1,12 @@
+# $Id$
+# Customized settings for distcache
+
+#PORT=5555
+
+#SESSIONS=3000
+
+#SOCKET=/var/cache/mod_ssl/distcache
+
+#SERVER=localhost:${PORT}
+
+#OWNER=http

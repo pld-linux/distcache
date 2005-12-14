@@ -1,74 +1,81 @@
 #!/bin/bash
 #
-# distcache    Startup script for the Distcache SSL Session Cache Server
+# distcache		Startup script for the Distcache SSL Session Cache Server
 #
-# chkconfig: - 90 10
-# description: Distcache is a Distributed SSL Session Cache server.
-# processname: dc_server
-# config: /etc/sysconfig/distcache
-# pidfile: /var/run/dc_server.pid
+# chkconfig:	345 90 10
+# description:	Distcache is a Distributed SSL Session Cache server.
+# processname:	dc_server
+# config:		/etc/sysconfig/distcache
+# pidfile:		/var/run/dc_server.pid
+#
+# $Id$
 
 # Source function library.
 . /etc/rc.d/init.d/functions
 
+# Get network config
+. /etc/sysconfig/network
+
+# Check that networking is up.
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		msg_network_down dc_server
+		exit 1
+	fi
+else
+	exit 0
+fi
+
 if [ -f /etc/sysconfig/distcache ]; then
-        . /etc/sysconfig/distcache
+	. /etc/sysconfig/distcache
 fi
 
 port=${PORT-5555}
 sessions=${SESSIONS-3000}
 
-prog=dc_server
 RETVAL=0
 runas=nobody
 dc_server=/usr/bin/dc_server
 
 OPTIONS="-daemon -pidfile /var/run/dc_server.pid -user ${runas} -sessions ${sessions} -listen IP:${port}"
 
-start() {
-        echo -n $"Starting $prog: "
-        daemon $dc_server $OPTIONS
-        RETVAL=$?
-        echo
-        [ $RETVAL = 0 ] && touch /var/lock/subsys/dc_server
-        return $RETVAL
-}
-stop() {
-	echo -n $"Stopping $prog: "
-	killproc $dc_server
-	RETVAL=$?
-	echo
-	[ $RETVAL = 0 ] && rm -f /var/lock/subsys/dc_server /var/run/dc_server.pid
-}
-
 # See how we were called.
 case "$1" in
-  start)
-	start
-	;;
-  stop)
-	stop
-	;;
-  status)
-        status $dc_server
-	RETVAL=$?
-	;;
-  restart)
-	stop
-	start
-	;;
-  condrestart)
-	if [ -f /var/run/dc_server.pid ] ; then
-		stop
-		start
+start)
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/dc_server ]; then
+		msg_starting dc_server
+		daemon $dc_server $OPTIONS
+		RETVAL=$?
+		[ $RETVAL = 0 ] && touch /var/lock/subsys/dc_server
+	else
+		msg_already_running dc_server
 	fi
 	;;
-  reload)
-        reload
+stop)
+	if [ -f /var/lock/subsys/dc_server ]; then
+		# Stop daemons.
+		msg_stopping dc_server
+		killproc $dc_server
+		rm -f /var/lock/subsys/dc_server /var/run/dc_server.pid
+	else
+		msg_not_running dc_server
+	fi
 	;;
-  *)
-	echo $"Usage: $prog {start|stop|restart|condrestart|status|help}"
-	exit 1
+status)
+	status $dc_server
+	RETVAL=$?
+	;;
+restart|reload|force-reload)
+	$0 stop
+	$0 start
+	;;
+*)
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
+	exit 3
 esac
 
 exit $RETVAL
+
+# This must be last line !
+# vi:syntax=sh:tw=78:ts=4:sw=4

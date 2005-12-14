@@ -1,19 +1,19 @@
-# TODO: separate -static?
 Summary:	Distributed SSL session cache
 Summary(pl):	Rozproszona pamiêæ podrêczna sesji SSL
 Name:		distcache
 Version:	1.4.5
-Release:	6
+Release:	0.1
 License:	LGPL
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/distcache/%{name}-%{version}.tar.bz2
 # Source0-md5:	bad485801024f711ad72e83ba1adcd7d
 Source1:	dc_server.init
 Source2:	dc_client.init
-Patch0:		%{name}-1.4.5-setuid.patch
+Source3:	distcache.sysconfig
+Patch0:		%{name}-setuid.patch
 URL:		http://www.distcache.org/
-BuildRequires:	automake >= 1:1.7
 BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	libtool
 BuildRequires:	openssl-devel
 Requires(post):	/sbin/ldconfig
@@ -51,6 +51,18 @@ API dla aplikacji chc±cych korzystaæ z rozproszonej pamiêci podrêcznej
 sesji lub maj±cych samemu implementowaæ mechanizm przechowywania
 danych dla serwera pamiêci podrêcznej sesji.
 
+%package static
+Summary:	Static distcache distributed session cache library
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+This package includes the static libraries that implement the
+necessary network functionality, the session caching protocol, and
+APIs for applications wishing to use a distributed session cache, or
+indeed even to implement a storage mechanism for a session cache
+server.
+
 %prep
 %setup -q
 %patch0 -p1
@@ -59,7 +71,7 @@ danych dla serwera pamiêci podrêcznej sesji.
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
-automake -aic --gnu || : automake ate my hamster
+%{__automake}
 %configure \
 	--enable-shared
 %{__make}
@@ -73,9 +85,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C ssl install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT/etc/rc.d/init.d
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/dc_server
-install %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/dc_client
+install -d $RPM_BUILD_ROOT/etc/{sysconfig,rc.d/init.d}
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/dc_server
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/dc_client
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/distcache
 
 # Unpackaged files
 rm -f $RPM_BUILD_ROOT%{_bindir}/{nal_test,piper}
@@ -90,9 +103,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %preun
 if [ "$1" = "0" ]; then
-	/etc/rc.d/init.d/dc_server stop >/dev/null 2>&1
-	/etc/rc.d/init.d/dc_client stop >/dev/null 2>&1
+	/etc/rc.d/init.d/dc_server stop
 	/sbin/chkconfig --del dc_server
+	/etc/rc.d/init.d/dc_client stop
 	/sbin/chkconfig --del dc_client
 fi
 
@@ -101,6 +114,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc ANNOUNCE CHANGES README LICENSE FAQ
+%config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/*
 %attr(755,root,root) %{_bindir}/sslswamp
 %attr(755,root,root) %{_bindir}/dc_*
 %attr(755,root,root) %{_libdir}/*.so.*
@@ -112,7 +126,11 @@ fi
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.*a
+%{_libdir}/*.la
 %{_includedir}/distcache
 %{_includedir}/libnal
 %{_mandir}/man2/*
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/*.a

@@ -2,7 +2,7 @@ Summary:	Distributed SSL session cache
 Summary(pl):	Rozproszona pamiêæ podrêczna sesji SSL
 Name:		distcache
 Version:	1.4.5
-Release:	0.4
+Release:	0.5
 License:	LGPL
 Group:		Daemons
 Source0:	http://dl.sourceforge.net/distcache/%{name}-%{version}.tar.bz2
@@ -47,7 +47,7 @@ server.
 Summary:	Header files for distcache distributed session cache library
 Summary(pl):	Pliki nag³ówkowe biblioteki rozproszonej pamiêci podrêcznej sesji distcache
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 
 %description devel
 This package includes the header files for the libraries that

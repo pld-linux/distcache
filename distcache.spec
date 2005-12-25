@@ -34,6 +34,7 @@ niekoniecznie tylko) w celu zapamiêtywania sesji SSL/TLS.
 
 %package libs
 Summary:	Shared distcache distributed session cache libraries
+Summary(pl):	Wspó³dzielone biblioteki rozproszonej pamiêci podrêcznej sesji
 Group:		Libraries
 
 %description libs
@@ -42,6 +43,13 @@ necessary network functionality, the session caching protocol, and
 APIs for applications wishing to use a distributed session cache, or
 indeed even to implement a storage mechanism for a session cache
 server.
+
+%description libs -l pl
+Ten pakiet zawiera wspó³dzielone biblioteki implementuj±ce potrzebn±
+funkcjonalno¶æ sieciow±, protokó³ zapamiêtywania sesji oraz API dla
+aplikacji chc±cych korzystaæ z rozproszonej pamiêci podrêcznej sesji
+lub maj±cych samemu implementowaæ mechanizm przechowywania danych dla
+serwera pamiêci podrêcznej sesji.
 
 %package devel
 Summary:	Header files for distcache distributed session cache library
@@ -65,6 +73,7 @@ danych dla serwera pamiêci podrêcznej sesji.
 
 %package static
 Summary:	Static distcache distributed session cache library
+Summary(pl):	Statyczne biblioteki rozproszonej pamiêci podrêcznej sesji
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -74,6 +83,13 @@ necessary network functionality, the session caching protocol, and
 APIs for applications wishing to use a distributed session cache, or
 indeed even to implement a storage mechanism for a session cache
 server.
+
+%description static -l pl
+Ten pakiet zawiera statyczne biblioteki implementuj±ce potrzebn±
+funkcjonalno¶æ sieciow±, protokó³ zapamiêtywania sesji oraz API dla
+aplikacji chc±cych korzystaæ z rozproszonej pamiêci podrêcznej sesji
+lub maj±cych samemu implementowaæ mechanizm przechowywania danych dla
+serwera pamiêci podrêcznej sesji.
 
 %prep
 %setup -q
@@ -138,16 +154,16 @@ fi
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
-%{_libdir}/*.la
+%attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_includedir}/distcache
 %{_includedir}/libnal
 %{_mandir}/man2/*
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%{_libdir}/lib*.a

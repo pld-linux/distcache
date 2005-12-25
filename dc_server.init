@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # distcache		Startup script for the Distcache SSL Session Cache Server
 #

@@ -1,5 +1,5 @@
 Summary:	Distributed SSL session cache
-Summary(pl.UTF-8):   Rozproszona pamięć podręczna sesji SSL
+Summary(pl.UTF-8):	Rozproszona pamięć podręczna sesji SSL
 Name:		distcache
 Version:	1.4.5
 Release:	0.5
@@ -34,7 +34,7 @@ niekoniecznie tylko) w celu zapamiętywania sesji SSL/TLS.
 
 %package libs
 Summary:	Shared distcache distributed session cache libraries
-Summary(pl.UTF-8):   Współdzielone biblioteki rozproszonej pamięci podręcznej sesji
+Summary(pl.UTF-8):	Współdzielone biblioteki rozproszonej pamięci podręcznej sesji
 Group:		Libraries
 
 %description libs
@@ -53,7 +53,7 @@ serwera pamięci podręcznej sesji.
 
 %package devel
 Summary:	Header files for distcache distributed session cache library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki rozproszonej pamięci podręcznej sesji distcache
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki rozproszonej pamięci podręcznej sesji distcache
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
@@ -73,7 +73,7 @@ danych dla serwera pamięci podręcznej sesji.
 
 %package static
 Summary:	Static distcache distributed session cache library
-Summary(pl.UTF-8):   Statyczne biblioteki rozproszonej pamięci podręcznej sesji
+Summary(pl.UTF-8):	Statyczne biblioteki rozproszonej pamięci podręcznej sesji
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 

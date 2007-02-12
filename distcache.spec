@@ -1,5 +1,5 @@
 Summary:	Distributed SSL session cache
-Summary(pl):	Rozproszona pamiêæ podrêczna sesji SSL
+Summary(pl.UTF-8):   Rozproszona pamiÄ™Ä‡ podrÄ™czna sesji SSL
 Name:		distcache
 Version:	1.4.5
 Release:	0.5
@@ -27,14 +27,14 @@ The distcache package provides a variety of functionality for enabling
 a network-based session caching system, primarily for (though not
 restricted to) SSL/TLS session caching.
 
-%description -l pl
-Pakiet distcache udostêpnia rozmait± funkcjonalno¶æ maj±c± umo¿liwiæ
-dzia³anie sieciowego systemu pamiêci podrêcznej sesji, g³ównie (choæ
-niekoniecznie tylko) w celu zapamiêtywania sesji SSL/TLS.
+%description -l pl.UTF-8
+Pakiet distcache udostÄ™pnia rozmaitÄ… funkcjonalnoÅ›Ä‡ majÄ…cÄ… umoÅ¼liwiÄ‡
+dziaÅ‚anie sieciowego systemu pamiÄ™ci podrÄ™cznej sesji, gÅ‚Ã³wnie (choÄ‡
+niekoniecznie tylko) w celu zapamiÄ™tywania sesji SSL/TLS.
 
 %package libs
 Summary:	Shared distcache distributed session cache libraries
-Summary(pl):	Wspó³dzielone biblioteki rozproszonej pamiêci podrêcznej sesji
+Summary(pl.UTF-8):   WspÃ³Å‚dzielone biblioteki rozproszonej pamiÄ™ci podrÄ™cznej sesji
 Group:		Libraries
 
 %description libs
@@ -44,16 +44,16 @@ APIs for applications wishing to use a distributed session cache, or
 indeed even to implement a storage mechanism for a session cache
 server.
 
-%description libs -l pl
-Ten pakiet zawiera wspó³dzielone biblioteki implementuj±ce potrzebn±
-funkcjonalno¶æ sieciow±, protokó³ zapamiêtywania sesji oraz API dla
-aplikacji chc±cych korzystaæ z rozproszonej pamiêci podrêcznej sesji
-lub maj±cych samemu implementowaæ mechanizm przechowywania danych dla
-serwera pamiêci podrêcznej sesji.
+%description libs -l pl.UTF-8
+Ten pakiet zawiera wspÃ³Å‚dzielone biblioteki implementujÄ…ce potrzebnÄ…
+funkcjonalnoÅ›Ä‡ sieciowÄ…, protokÃ³Å‚ zapamiÄ™tywania sesji oraz API dla
+aplikacji chcÄ…cych korzystaÄ‡ z rozproszonej pamiÄ™ci podrÄ™cznej sesji
+lub majÄ…cych samemu implementowaÄ‡ mechanizm przechowywania danych dla
+serwera pamiÄ™ci podrÄ™cznej sesji.
 
 %package devel
 Summary:	Header files for distcache distributed session cache library
-Summary(pl):	Pliki nag³ówkowe biblioteki rozproszonej pamiêci podrêcznej sesji distcache
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki rozproszonej pamiÄ™ci podrÄ™cznej sesji distcache
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
 
@@ -64,16 +64,16 @@ protocol, and APIs for applications wishing to use a distributed
 session cache, or indeed even to implement a storage mechanism for a
 session cache server.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe bibliotek implementuj±cych
-potrzebn± funkcjonalno¶æ sieciow±, protokó³ zapamiêtywania sesji oraz
-API dla aplikacji chc±cych korzystaæ z rozproszonej pamiêci podrêcznej
-sesji lub maj±cych samemu implementowaæ mechanizm przechowywania
-danych dla serwera pamiêci podrêcznej sesji.
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nagÅ‚Ã³wkowe bibliotek implementujÄ…cych
+potrzebnÄ… funkcjonalnoÅ›Ä‡ sieciowÄ…, protokÃ³Å‚ zapamiÄ™tywania sesji oraz
+API dla aplikacji chcÄ…cych korzystaÄ‡ z rozproszonej pamiÄ™ci podrÄ™cznej
+sesji lub majÄ…cych samemu implementowaÄ‡ mechanizm przechowywania
+danych dla serwera pamiÄ™ci podrÄ™cznej sesji.
 
 %package static
 Summary:	Static distcache distributed session cache library
-Summary(pl):	Statyczne biblioteki rozproszonej pamiêci podrêcznej sesji
+Summary(pl.UTF-8):   Statyczne biblioteki rozproszonej pamiÄ™ci podrÄ™cznej sesji
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -84,12 +84,12 @@ APIs for applications wishing to use a distributed session cache, or
 indeed even to implement a storage mechanism for a session cache
 server.
 
-%description static -l pl
-Ten pakiet zawiera statyczne biblioteki implementuj±ce potrzebn±
-funkcjonalno¶æ sieciow±, protokó³ zapamiêtywania sesji oraz API dla
-aplikacji chc±cych korzystaæ z rozproszonej pamiêci podrêcznej sesji
-lub maj±cych samemu implementowaæ mechanizm przechowywania danych dla
-serwera pamiêci podrêcznej sesji.
+%description static -l pl.UTF-8
+Ten pakiet zawiera statyczne biblioteki implementujÄ…ce potrzebnÄ…
+funkcjonalnoÅ›Ä‡ sieciowÄ…, protokÃ³Å‚ zapamiÄ™tywania sesji oraz API dla
+aplikacji chcÄ…cych korzystaÄ‡ z rozproszonej pamiÄ™ci podrÄ™cznej sesji
+lub majÄ…cych samemu implementowaÄ‡ mechanizm przechowywania danych dla
+serwera pamiÄ™ci podrÄ™cznej sesji.
 
 %prep
 %setup -q
